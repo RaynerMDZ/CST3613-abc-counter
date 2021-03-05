@@ -4,6 +4,7 @@ import edu.citytech.cst.s23253396.abccounter.services.AbcCounterService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -11,6 +12,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.FlowPane;
 
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class AbcCounterController implements Initializable {
@@ -71,10 +73,55 @@ public class AbcCounterController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.fpCounter.getChildren().clear();
 
-        cbIsVowel.getItems().add("Nothing");
-        cbIsVowel.getItems().add("Vowels");
-        cbIsVowel.getItems().add("Consonants");
+        this.cbIsVowel.getItems().add("Nothing");
+        this.cbIsVowel.getItems().add("Vowels");
+        this.cbIsVowel.getItems().add("Consonants");
 
-        
+        this.cbIsVowel.setOnAction(this::selectMode);
+    }
+
+    private void selectMode(ActionEvent event) {
+        String selectedItem = this.cbIsVowel.getSelectionModel().getSelectedItem().toLowerCase(Locale.ROOT);
+
+        if (selectedItem.contains("vowel".toLowerCase(Locale.ROOT))) {
+
+            for (Node currentLabel : this.fpCounter.getChildren()) {
+
+                var realLabel = (Label) currentLabel;
+                boolean isVowel = this.counterService.isVowel(realLabel.getText());
+
+                currentLabel.getStyleClass().clear();
+                currentLabel.getStyleClass().add("displayLabel");
+
+                if (isVowel) {
+
+                    currentLabel.getStyleClass().add("isVowel");
+                }
+            }
+
+        }
+
+        if (selectedItem.contains("consonants".toLowerCase(Locale.ROOT))) {
+
+            for (Node currentLabel : this.fpCounter.getChildren()) {
+
+                var realLabel = (Label) currentLabel;
+                boolean isConsonant = this.counterService.isVowel(realLabel.getText());
+
+                currentLabel.getStyleClass().clear();
+                currentLabel.getStyleClass().add("displayLabel");
+
+                if (!isConsonant) {
+                    currentLabel.getStyleClass().add("isConsonant");
+                }
+            }
+        }
+
+        if (selectedItem.contains("nothing".toLowerCase(Locale.ROOT))) {
+            for (Node currentLabel : this.fpCounter.getChildren()) {
+                currentLabel.getStyleClass().clear();
+                currentLabel.getStyleClass().add("displayLabel");
+            }
+        }
     }
 }

@@ -8,8 +8,6 @@ import java.util.stream.Stream;
 public class AbcCounterService {
 
     private final static Pattern alphabet = Pattern.compile("^[a-zA-Z]*$");
-    private final static Pattern vowels = Pattern.compile("^[aeiou]*$");
-    private final static Pattern consonants = Pattern.compile("^[a-zA-Z&&[^aeiou]]*$");
 
     public List<Character> countABC() {
         List<Character> abc = new ArrayList<>();
@@ -30,9 +28,9 @@ public class AbcCounterService {
         return integers;
     }
 
-    public static boolean isVowel(String digit) {
+    public boolean isVowel(String string) {
         // Java 8 Functional Programming
         return Stream.of("a", "e", "i", "o", "u")
-                .anyMatch(digit::equalsIgnoreCase);
+                .anyMatch(string::equalsIgnoreCase);
     }
 }
