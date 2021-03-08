@@ -61,9 +61,6 @@ public class AbcCounterController implements Initializable {
         }
     }
 
-    /**
-     * This private method triggers the options inside selectModeABC.
-     */
     private void choiceBoxABC() {
         this.cbIsVowel.getItems().add("Vowels");
         this.cbIsVowel.getItems().add("Consonants");
@@ -155,32 +152,32 @@ public class AbcCounterController implements Initializable {
                 boolean isEven = this.counterService.isEven(Integer.parseInt(((Label) currentLabel).getText()));
 
                 currentLabel.getStyleClass().clear();
-                currentLabel.getStyleClass().add("displayLabel");
+                currentLabel.getStyleClass().add("displayLabel-123");
                 if (isEven) {
-                    currentLabel.getStyleClass().add("isVowel");
+                    currentLabel.getStyleClass().add("isEven");
                 }
             });
 
         }
 
         if (selectedItem != null && selectedItem.contains("odd".toLowerCase())) {
-
             this.fpCounter.getChildren().forEach(currentLabel -> {
                 boolean isOdd = this.counterService.isOdd(Integer.parseInt(((Label) currentLabel).getText()));
 
                 currentLabel.getStyleClass().clear();
-                currentLabel.getStyleClass().add("displayLabel");
+                currentLabel.getStyleClass().add("displayLabel-123");
 
                 if (isOdd) {
-                    currentLabel.getStyleClass().add("isConsonant");
+                    currentLabel.getStyleClass().add("isOdd");
                 }
             });
+
         }
 
         if (selectedItem != null && selectedItem.contains("nothing".toLowerCase())) {
             this.fpCounter.getChildren().forEach(currentLabel -> {
                 currentLabel.getStyleClass().clear();
-                currentLabel.getStyleClass().add("displayLabel");
+                currentLabel.getStyleClass().add("displayLabel-123");
             });
         }
 

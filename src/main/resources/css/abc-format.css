@@ -69,3 +69,14 @@ root {
     -fx-background-color: rgb(150,150,255);
     -fx-border-style: dashed;
 }
+
+.isEven {
+    -fx-background-color: rgb(31, 171, 171);
+    -fx-border-style: dashed;
+
+}
+
+.isOdd {
+    -fx-background-color: rgb(219, 26, 64);
+    -fx-border-style: dashed;
+}

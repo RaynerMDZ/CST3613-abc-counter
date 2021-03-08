@@ -31,7 +31,7 @@ public class AbcCounterService {
      */
     public  List<Integer> count123() {
         List<Integer> integers = new ArrayList<>();
-        for (int i = 1; i <= 50; i++) {
+        for (int i = 1; i <= 300; i++) {
             integers.add(i);
         }
         return integers;
