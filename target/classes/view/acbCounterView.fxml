@@ -105,13 +105,13 @@
          </children></FlowPane>
       <Label fx:id="title" alignment="CENTER" layoutX="19.0" layoutY="21.0" text="ABC, 123 Counter" />
       <Button layoutX="330.0" layoutY="689.0" mnemonicParsing="false" text="Count" />
-      <RadioButton fx:id="rbABC" layoutX="70.0" layoutY="94.0" mnemonicParsing="false" onAction="#mode" text="abc">
+      <RadioButton fx:id="rbABC" layoutX="70.0" layoutY="94.0" mnemonicParsing="false" onAction="#selectABC" text="abc">
          <toggleGroup>
             <ToggleGroup fx:id="tgCounter" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="rb123" layoutX="130.0" layoutY="94.0" mnemonicParsing="false" onAction="#mode" text="123" toggleGroup="$tgCounter" />
-      <RadioButton fx:id="rbNone" layoutX="186.0" layoutY="94.0" mnemonicParsing="false" onAction="#mode" text="none" toggleGroup="$tgCounter" />
+      <RadioButton fx:id="rb123" layoutX="130.0" layoutY="94.0" mnemonicParsing="false" onAction="#select123" text="123" toggleGroup="$tgCounter" />
+      <RadioButton fx:id="rbNone" layoutX="186.0" layoutY="94.0" mnemonicParsing="false" onAction="#selectNothing" text="none" toggleGroup="$tgCounter" />
       <ChoiceBox fx:id="cbIsVowel" layoutX="494.0" layoutY="89.0" prefHeight="18.0" prefWidth="150.0" />
       <Label layoutX="436.0" layoutY="89.0" prefHeight="27.0" prefWidth="58.0" text="Select" />
    </children>

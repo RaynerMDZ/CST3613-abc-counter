@@ -12,7 +12,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.FlowPane;
 
 import java.net.URL;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class AbcCounterController implements Initializable {
@@ -40,69 +39,50 @@ public class AbcCounterController implements Initializable {
     @FXML
     private ChoiceBox<String> cbIsVowel;
 
-    @FXML
-    public void selectABC(ActionEvent event) {
-
-        // Show ABC.
-        if (this.tgCounter.getSelectedToggle().equals(this.rbABC)) {
-            // Clear the working space.
-            this.fpCounter.getChildren().clear();
-            // Iterate over the list with the alphabet
-            for (Character abc : counterService.countABC()) {
-                var label = new Label(abc.toString());
-                // Add style to the label.
-                label.getStyleClass().add("displayLabel");
-                // Add the label to the flow pane.
-                this.fpCounter.getChildren().add(label);
-            }
-
-        }
-    }
-
-    @FXML
-    public void select123(ActionEvent event) {
-
-        if ((this.tgCounter.getSelectedToggle().equals(this.rb123))){
-            // Clear the working space.
-            this.fpCounter.getChildren().clear();
-            // Iterate over 1-50.
-            for (Integer number : counterService.count123()) {
-                var label = new Label(number.toString());
-                // Add style to the label.
-                label.getStyleClass().add("displayLabel");
-                // Add the label to the flow pane.
-                this.fpCounter.getChildren().add(label);
-            }
-
-            // Clear the view.
-        }
-    }
-
-    @FXML
-    public void selectNothing(ActionEvent event) {
-        this.fpCounter.getChildren().clear();
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.fpCounter.getChildren().clear();
-
-        this.cbIsVowel.getItems().add("Nothing");
-        this.cbIsVowel.getItems().add("Vowels");
-        this.cbIsVowel.getItems().add("Consonants");
-
-        this.cbIsVowel.setOnAction(this::selectMode);
     }
 
-    private void selectMode(ActionEvent event) {
-        String selectedItem = this.cbIsVowel.getSelectionModel().getSelectedItem().toLowerCase(Locale.ROOT);
+    @FXML
+    public void selectABC(ActionEvent event) {
 
-        if (selectedItem.contains("vowel".toLowerCase(Locale.ROOT))) {
+        this.cbIsVowel.getItems().clear();
+        this.fpCounter.getChildren().clear();
+        this.choiceBoxABC();
+
+        // Iterate over the list with the alphabet
+        for (Character abc : counterService.countABC()) {
+            var label = new Label(abc.toString());
+            // Add style to the label.
+            label.getStyleClass().add("displayLabel");
+            // Add the label to the flow pane.
+            this.fpCounter.getChildren().add(label);
+        }
+    }
+
+    /**
+     * This private method triggers the options inside selectModeABC.
+     */
+    private void choiceBoxABC() {
+        this.cbIsVowel.getItems().add("Vowels");
+        this.cbIsVowel.getItems().add("Consonants");
+        this.cbIsVowel.getItems().add("Nothing");
+
+        this.cbIsVowel.setOnAction(this::selectModeABC);
+    }
+
+    private void selectModeABC(ActionEvent event) {
+
+        String selectedItem = this.cbIsVowel.getSelectionModel().getSelectedItem();
+
+        if (selectedItem != null) selectedItem = selectedItem.toLowerCase();
+
+        if (selectedItem != null && selectedItem.contains("vowel".toLowerCase())) {
+
 
             for (Node currentLabel : this.fpCounter.getChildren()) {
-
-                var realLabel = (Label) currentLabel;
-                boolean isVowel = this.counterService.isVowel(realLabel.getText());
+                boolean isVowel = this.counterService.isVowel(((Label) currentLabel).getText());
 
                 currentLabel.getStyleClass().clear();
                 currentLabel.getStyleClass().add("displayLabel");
@@ -115,12 +95,10 @@ public class AbcCounterController implements Initializable {
 
         }
 
-        if (selectedItem.contains("consonants".toLowerCase(Locale.ROOT))) {
+        if (selectedItem != null && selectedItem.contains("consonants".toLowerCase())) {
 
             for (Node currentLabel : this.fpCounter.getChildren()) {
-
-                var realLabel = (Label) currentLabel;
-                boolean isConsonant = this.counterService.isConstant(realLabel.getText());
+                boolean isConsonant = this.counterService.isConstant(((Label) currentLabel).getText());
 
                 currentLabel.getStyleClass().clear();
                 currentLabel.getStyleClass().add("displayLabel");
@@ -131,11 +109,87 @@ public class AbcCounterController implements Initializable {
             }
         }
 
-        if (selectedItem.contains("nothing".toLowerCase(Locale.ROOT))) {
+
+        if (selectedItem != null && selectedItem.contains("nothing".toLowerCase())) {
+
             for (Node currentLabel : this.fpCounter.getChildren()) {
                 currentLabel.getStyleClass().clear();
                 currentLabel.getStyleClass().add("displayLabel");
             }
         }
     }
+
+    @FXML
+    public void select123(ActionEvent event) {
+
+        this.cbIsVowel.getItems().clear();
+        this.fpCounter.getChildren().clear();
+        this.choiceBox123();
+
+        // Iterate over 1-50.
+        for (Integer number : counterService.count123()) {
+            var label = new Label(number.toString());
+            // Add style to the label.
+            label.getStyleClass().add("displayLabel-123");
+            // Add the label to the flow pane.
+            this.fpCounter.getChildren().add(label);
+        }
+    }
+
+    private void choiceBox123() {
+        this.cbIsVowel.getItems().add("Even");
+        this.cbIsVowel.getItems().add("Odd");
+        this.cbIsVowel.getItems().add("Nothing");
+
+        this.cbIsVowel.setOnAction(this::selectMode123);
+    }
+
+    private void selectMode123(ActionEvent event) {
+        String selectedItem = this.cbIsVowel.getSelectionModel().getSelectedItem();
+
+        if (selectedItem != null) selectedItem = selectedItem.toLowerCase();
+
+        if (selectedItem != null && selectedItem.contains("even".toLowerCase())) {
+
+            this.fpCounter.getChildren().forEach(currentLabel -> {
+                boolean isEven = this.counterService.isEven(Integer.parseInt(((Label) currentLabel).getText()));
+
+                currentLabel.getStyleClass().clear();
+                currentLabel.getStyleClass().add("displayLabel");
+                if (isEven) {
+                    currentLabel.getStyleClass().add("isVowel");
+                }
+            });
+
+        }
+
+        if (selectedItem != null && selectedItem.contains("odd".toLowerCase())) {
+
+            this.fpCounter.getChildren().forEach(currentLabel -> {
+                boolean isOdd = this.counterService.isOdd(Integer.parseInt(((Label) currentLabel).getText()));
+
+                currentLabel.getStyleClass().clear();
+                currentLabel.getStyleClass().add("displayLabel");
+
+                if (isOdd) {
+                    currentLabel.getStyleClass().add("isConsonant");
+                }
+            });
+        }
+
+        if (selectedItem != null && selectedItem.contains("nothing".toLowerCase())) {
+            this.fpCounter.getChildren().forEach(currentLabel -> {
+                currentLabel.getStyleClass().clear();
+                currentLabel.getStyleClass().add("displayLabel");
+            });
+        }
+
+    }
+
+    @FXML
+    public void selectNothing(ActionEvent event) {
+        this.cbIsVowel.getItems().clear();
+        this.fpCounter.getChildren().clear();
+    }
+
 }

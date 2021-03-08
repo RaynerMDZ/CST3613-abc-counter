@@ -57,4 +57,12 @@ public class AbcCounterService {
     public boolean isConstant(String string) {
         return !isVowel(string);
     }
+
+    public boolean isEven(int integer) {
+        return integer % 2 == 0;
+    }
+
+    public boolean isOdd(int integer) {
+        return !isEven(integer);
+    }
 }
