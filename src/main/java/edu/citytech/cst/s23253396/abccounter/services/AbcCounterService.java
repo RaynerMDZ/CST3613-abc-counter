@@ -10,7 +10,8 @@ public class AbcCounterService {
     private final static Pattern alphabet = Pattern.compile("^[a-zA-Z]*$");
 
     /**
-     * This method returns a list of characters of the alphabet. From A to Z both uppercase and lowercase.
+     * This method returns a list of characters representing each letter of the alphabet
+     * From A to Z both uppercase and lowercase.
      * @return List<Characters>
      */
     public List<Character> countABC() {
@@ -38,7 +39,7 @@ public class AbcCounterService {
 
     /**
      *  You can use this same function to check for consonants. Just add ! in the controller to check whether a
-     *  letter is a vowel or not.
+     *  letter is a vowel or not. e.g. if (!isVowel) {}
      * @param string which is a letter from the gui.
      * @return boolean
      */
@@ -46,5 +47,14 @@ public class AbcCounterService {
         // Java 8 Functional Programming
         return Stream.of("a", "e", "i", "o", "u")
                 .anyMatch(string::equalsIgnoreCase);
+    }
+
+    /**
+     *
+     * @param string which is a letter from the gui.
+     * @return boolean
+     */
+    public boolean isConstant(String string) {
+        return !isVowel(string);
     }
 }

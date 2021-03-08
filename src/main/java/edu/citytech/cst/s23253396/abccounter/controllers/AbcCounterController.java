@@ -41,32 +41,46 @@ public class AbcCounterController implements Initializable {
     private ChoiceBox<String> cbIsVowel;
 
     @FXML
-    void mode(ActionEvent event) {
+    public void selectABC(ActionEvent event) {
 
         // Show ABC.
         if (this.tgCounter.getSelectedToggle().equals(this.rbABC)) {
             // Clear the working space.
             this.fpCounter.getChildren().clear();
+            // Iterate over the list with the alphabet
             for (Character abc : counterService.countABC()) {
                 var label = new Label(abc.toString());
+                // Add style to the label.
                 label.getStyleClass().add("displayLabel");
+                // Add the label to the flow pane.
                 this.fpCounter.getChildren().add(label);
             }
 
-        // Show 123.
-        } else if ((this.tgCounter.getSelectedToggle().equals(this.rb123))){
+        }
+    }
+
+    @FXML
+    public void select123(ActionEvent event) {
+
+        if ((this.tgCounter.getSelectedToggle().equals(this.rb123))){
             // Clear the working space.
             this.fpCounter.getChildren().clear();
+            // Iterate over 1-50.
             for (Integer number : counterService.count123()) {
                 var label = new Label(number.toString());
+                // Add style to the label.
                 label.getStyleClass().add("displayLabel");
+                // Add the label to the flow pane.
                 this.fpCounter.getChildren().add(label);
             }
 
-        // Clear the view.
-        } else {
-            this.fpCounter.getChildren().clear();
+            // Clear the view.
         }
+    }
+
+    @FXML
+    public void selectNothing(ActionEvent event) {
+        this.fpCounter.getChildren().clear();
     }
 
     @Override
@@ -106,12 +120,12 @@ public class AbcCounterController implements Initializable {
             for (Node currentLabel : this.fpCounter.getChildren()) {
 
                 var realLabel = (Label) currentLabel;
-                boolean isConsonant = this.counterService.isVowel(realLabel.getText());
+                boolean isConsonant = this.counterService.isConstant(realLabel.getText());
 
                 currentLabel.getStyleClass().clear();
                 currentLabel.getStyleClass().add("displayLabel");
 
-                if (!isConsonant) {
+                if (isConsonant) {
                     currentLabel.getStyleClass().add("isConsonant");
                 }
             }
