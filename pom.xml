@@ -16,7 +16,7 @@
     </properties>
 
     <build>
-        <finalName>mendez.rayner-abc-counter</finalName>
+        <finalName>counter-mendez.rayner</finalName>
         <resources>
             <resource>
                 <directory>src</directory>

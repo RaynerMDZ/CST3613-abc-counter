@@ -3,6 +3,8 @@ package edu.citytech.cst.s23253396.abccounter.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class AbcCounterService {
@@ -30,11 +32,7 @@ public class AbcCounterService {
      * @return List<Integers>
      */
     public  List<Integer> count123() {
-        List<Integer> integers = new ArrayList<>();
-        for (int i = 1; i <= 300; i++) {
-            integers.add(i);
-        }
-        return integers;
+        return IntStream.range(1, 501).boxed().collect(Collectors.toList());
     }
 
     /**

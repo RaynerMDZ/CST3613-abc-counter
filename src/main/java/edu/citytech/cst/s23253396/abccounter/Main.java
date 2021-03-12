@@ -14,7 +14,7 @@ public class Main extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setTitle("ABC, 123 Counter");
+        stage.setTitle("Counter by Rayner Mendez");
         String name = "/view/acbCounterView.fxml";
         Parent root = FXMLLoader.load(getClass().getResource(name));
         stage.setScene(new Scene(root));

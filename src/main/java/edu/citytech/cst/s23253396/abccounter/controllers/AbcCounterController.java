@@ -1,10 +1,11 @@
 package edu.citytech.cst.s23253396.abccounter.controllers;
 
+import edu.citytech.cst.s23253396.abccounter.enums.AbcSelectBoxChoice;
+import edu.citytech.cst.s23253396.abccounter.enums.NumberSelectBoxChoice;
 import edu.citytech.cst.s23253396.abccounter.services.AbcCounterService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -62,10 +63,9 @@ public class AbcCounterController implements Initializable {
     }
 
     private void choiceBoxABC() {
-        this.cbIsVowel.getItems().add("Vowels");
-        this.cbIsVowel.getItems().add("Consonants");
-        this.cbIsVowel.getItems().add("Nothing");
-
+        this.cbIsVowel.getItems().add(AbcSelectBoxChoice.VOWEL.toString());
+        this.cbIsVowel.getItems().add(AbcSelectBoxChoice.CONSONANT.toString());
+        this.cbIsVowel.getItems().add(AbcSelectBoxChoice.NOTHING.toString());
         this.cbIsVowel.setOnAction(this::selectModeABC);
     }
 
@@ -73,46 +73,31 @@ public class AbcCounterController implements Initializable {
 
         String selectedItem = this.cbIsVowel.getSelectionModel().getSelectedItem();
 
-        if (selectedItem != null) selectedItem = selectedItem.toLowerCase();
+        if (selectedItem == null) return;
 
-        if (selectedItem != null && selectedItem.contains("vowel".toLowerCase())) {
-
-
-            for (Node currentLabel : this.fpCounter.getChildren()) {
+        if (selectedItem.equalsIgnoreCase(AbcSelectBoxChoice.VOWEL.toString())) {
+            this.fpCounter.getChildren().forEach(currentLabel -> {
                 boolean isVowel = this.counterService.isVowel(((Label) currentLabel).getText());
-
                 currentLabel.getStyleClass().clear();
                 currentLabel.getStyleClass().add("displayLabel");
-
-                if (isVowel) {
-
-                    currentLabel.getStyleClass().add("isVowel");
-                }
-            }
-
+                if (isVowel) currentLabel.getStyleClass().add("isVowel");
+            });
         }
 
-        if (selectedItem != null && selectedItem.contains("consonants".toLowerCase())) {
-
-            for (Node currentLabel : this.fpCounter.getChildren()) {
+        if (selectedItem.equalsIgnoreCase(AbcSelectBoxChoice.CONSONANT.toString())) {
+            this.fpCounter.getChildren().forEach(currentLabel -> {
                 boolean isConsonant = this.counterService.isConstant(((Label) currentLabel).getText());
-
                 currentLabel.getStyleClass().clear();
                 currentLabel.getStyleClass().add("displayLabel");
-
-                if (isConsonant) {
-                    currentLabel.getStyleClass().add("isConsonant");
-                }
-            }
+                if (isConsonant) currentLabel.getStyleClass().add("isConsonant");
+            });
         }
 
-
-        if (selectedItem != null && selectedItem.contains("nothing".toLowerCase())) {
-
-            for (Node currentLabel : this.fpCounter.getChildren()) {
+        if (selectedItem.equalsIgnoreCase(AbcSelectBoxChoice.NOTHING.toString())) {
+            this.fpCounter.getChildren().forEach(currentLabel -> {
                 currentLabel.getStyleClass().clear();
                 currentLabel.getStyleClass().add("displayLabel");
-            }
+            });
         }
     }
 
@@ -134,9 +119,9 @@ public class AbcCounterController implements Initializable {
     }
 
     private void choiceBox123() {
-        this.cbIsVowel.getItems().add("Even");
-        this.cbIsVowel.getItems().add("Odd");
-        this.cbIsVowel.getItems().add("Nothing");
+        this.cbIsVowel.getItems().add(NumberSelectBoxChoice.EVEN.toString());
+        this.cbIsVowel.getItems().add(NumberSelectBoxChoice.ODD.toString());
+        this.cbIsVowel.getItems().add(NumberSelectBoxChoice.NOTHING.toString());
 
         this.cbIsVowel.setOnAction(this::selectMode123);
     }
@@ -144,9 +129,9 @@ public class AbcCounterController implements Initializable {
     private void selectMode123(ActionEvent event) {
         String selectedItem = this.cbIsVowel.getSelectionModel().getSelectedItem();
 
-        if (selectedItem != null) selectedItem = selectedItem.toLowerCase();
+        if (selectedItem == null) return;
 
-        if (selectedItem != null && selectedItem.contains("even".toLowerCase())) {
+        if (selectedItem.equalsIgnoreCase(NumberSelectBoxChoice.EVEN.toString())) {
 
             this.fpCounter.getChildren().forEach(currentLabel -> {
                 boolean isEven = this.counterService.isEven(Integer.parseInt(((Label) currentLabel).getText()));
@@ -160,7 +145,7 @@ public class AbcCounterController implements Initializable {
 
         }
 
-        if (selectedItem != null && selectedItem.contains("odd".toLowerCase())) {
+        if (selectedItem.equalsIgnoreCase(NumberSelectBoxChoice.ODD.toString())) {
             this.fpCounter.getChildren().forEach(currentLabel -> {
                 boolean isOdd = this.counterService.isOdd(Integer.parseInt(((Label) currentLabel).getText()));
 
@@ -171,16 +156,14 @@ public class AbcCounterController implements Initializable {
                     currentLabel.getStyleClass().add("isOdd");
                 }
             });
-
         }
 
-        if (selectedItem != null && selectedItem.contains("nothing".toLowerCase())) {
+        if (selectedItem.equalsIgnoreCase(NumberSelectBoxChoice.NOTHING.toString())) {
             this.fpCounter.getChildren().forEach(currentLabel -> {
                 currentLabel.getStyleClass().clear();
                 currentLabel.getStyleClass().add("displayLabel-123");
             });
         }
-
     }
 
     @FXML
@@ -188,5 +171,4 @@ public class AbcCounterController implements Initializable {
         this.cbIsVowel.getItems().clear();
         this.fpCounter.getChildren().clear();
     }
-
 }
