@@ -1,6 +1,7 @@
 package edu.citytech.cst.s23253396.abccounter.services;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -36,10 +37,20 @@ public class AbcCounterService {
     }
 
     /**
+     *
+     * @return List<Integer>
+     */
+    public List<Integer> count321() {
+        List<Integer> reversedList = new ArrayList<>(this.count123());
+        Collections.reverse(reversedList);
+        return reversedList;
+    }
+
+    /**
      *  You can use this same function to check for consonants. Just add ! in the controller to check whether a
      *  letter is a vowel or not. e.g. if (!isVowel) {}
      * @param string which is a letter from the gui.
-     * @return boolean
+     * @return boolean.
      */
     public boolean isVowel(String string) {
         // Java 8 Functional Programming
@@ -50,17 +61,36 @@ public class AbcCounterService {
     /**
      *
      * @param string which is a letter from the gui.
-     * @return boolean
+     * @return boolean.
      */
     public boolean isConstant(String string) {
         return !isVowel(string);
     }
 
+    /**
+     *
+     * @param integer as a number from the gui.
+     * @return boolean.
+     */
     public boolean isEven(int integer) {
         return integer % 2 == 0;
     }
 
+    /**
+     *
+     * @param integer as a number from the gui.
+     * @return boolean.
+     */
     public boolean isOdd(int integer) {
         return !isEven(integer);
+    }
+
+    /**
+     *
+     * @param integer as a number from the gui.
+     * @return boolean.
+     */
+    public boolean isDivisibleBy6(int integer) {
+        return integer % 6 == 0;
     }
 }

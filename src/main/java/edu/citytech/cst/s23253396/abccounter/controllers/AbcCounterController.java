@@ -118,9 +118,25 @@ public class AbcCounterController implements Initializable {
         }
     }
 
+    @FXML
+    public void select321(ActionEvent event) {
+        this.cbIsVowel.getItems().clear();
+        this.fpCounter.getChildren().clear();
+        this.choiceBox123();
+
+        for (Integer number : counterService.count321()) {
+            var label = new Label(number.toString());
+            // Add style to the label.
+            label.getStyleClass().add("displayLabel-123");
+            // Add the label to the flow pane.
+            this.fpCounter.getChildren().add(label);
+        }
+    }
+
     private void choiceBox123() {
         this.cbIsVowel.getItems().add(NumberSelectBoxChoice.EVEN.toString());
         this.cbIsVowel.getItems().add(NumberSelectBoxChoice.ODD.toString());
+        this.cbIsVowel.getItems().add(NumberSelectBoxChoice.EVERY6.toString());
         this.cbIsVowel.getItems().add(NumberSelectBoxChoice.NOTHING.toString());
 
         this.cbIsVowel.setOnAction(this::selectMode123);
@@ -142,7 +158,6 @@ public class AbcCounterController implements Initializable {
                     currentLabel.getStyleClass().add("isEven");
                 }
             });
-
         }
 
         if (selectedItem.equalsIgnoreCase(NumberSelectBoxChoice.ODD.toString())) {
@@ -154,6 +169,19 @@ public class AbcCounterController implements Initializable {
 
                 if (isOdd) {
                     currentLabel.getStyleClass().add("isOdd");
+                }
+            });
+        }
+
+        if (selectedItem.equalsIgnoreCase(NumberSelectBoxChoice.EVERY6.toString())) {
+            this.fpCounter.getChildren().forEach(currentLabel -> {
+                boolean isDivisibleBy6 = this.counterService.isDivisibleBy6(Integer.parseInt(((Label) currentLabel).getText()));
+
+                currentLabel.getStyleClass().clear();
+                currentLabel.getStyleClass().add("displayLabel-123");
+
+                if (isDivisibleBy6) {
+                    currentLabel.getStyleClass().add("isDivisibleBy6");
                 }
             });
         }

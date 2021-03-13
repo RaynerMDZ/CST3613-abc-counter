@@ -2,6 +2,7 @@ package edu.citytech.cst.s23253396.abccounter.services;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -28,6 +29,14 @@ class AbcCounterServiceTest {
     void count123() {
         List<Integer> expectedList = IntStream.range(1, 501).boxed().collect(Collectors.toList());
         List<Integer> actualList = this.counterService.count123();
+        assertEquals(expectedList, actualList);
+    }
+
+    @Test
+    void count321() {
+        List<Integer> expectedList = IntStream.range(1, 501).boxed().collect(Collectors.toList());
+        Collections.reverse(expectedList);
+        List<Integer> actualList = this.counterService.count321();
         assertEquals(expectedList, actualList);
     }
 

@@ -80,3 +80,8 @@ root {
     -fx-background-color: rgb(219, 26, 64);
     -fx-border-style: dashed;
 }
+
+.isDivisibleBy6 {
+    -fx-background-color: rgb(26, 219, 97);
+    -fx-border-style: dashed;
+}
