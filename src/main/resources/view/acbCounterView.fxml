@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="709.0" stylesheets="@../css/abc-format.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.citytech.cst.s23253396.abccounter.controllers.AbcCounterController">
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="709.0" stylesheets="@../css/abc-format.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.citytech.cst.s23253396.abccounter.controllers.AbcCounterController">
    <Label fx:id="title" alignment="CENTER" layoutX="19.0" layoutY="21.0" text="ABC, 123 Counter" />
-   <RadioButton fx:id="rbABC" layoutX="70.0" layoutY="94.0" mnemonicParsing="false" onAction="#selectABC" text="abc">
+   <RadioButton fx:id="rbABC" layoutX="47.0" layoutY="94.0" mnemonicParsing="false" onAction="#selectABC" text="ABC">
       <toggleGroup>
          <ToggleGroup fx:id="tgCounter" />
       </toggleGroup>
    </RadioButton>
-   <RadioButton fx:id="rb123" layoutX="130.0" layoutY="94.0" mnemonicParsing="false" onAction="#select123" text="123" toggleGroup="$tgCounter" />
-   <RadioButton fx:id="rb321" layoutX="130.0" layoutY="123.0" mnemonicParsing="false" onAction="#select321" text="321" toggleGroup="$tgCounter" />
-   <RadioButton fx:id="rbNone" layoutX="186.0" layoutY="94.0" mnemonicParsing="false" onAction="#selectNothing" text="none" toggleGroup="$tgCounter" />
-   <ChoiceBox fx:id="cbIsVowel" layoutX="494.0" layoutY="89.0" prefHeight="18.0" prefWidth="150.0" />
+   <RadioButton fx:id="rb123" layoutX="109.0" layoutY="93.0" mnemonicParsing="false" onAction="#select123" text="123" toggleGroup="$tgCounter" />
+   <RadioButton fx:id="rb321" layoutX="108.0" layoutY="123.0" mnemonicParsing="false" onAction="#select321" text="321" toggleGroup="$tgCounter" />
+   <RadioButton fx:id="rbNone" layoutX="223.0" layoutY="94.0" mnemonicParsing="false" onAction="#selectNothing" text="none" toggleGroup="$tgCounter" />
+   <RadioButton fx:id="rbCBA" layoutX="47.0" layoutY="123.0" mnemonicParsing="false" onAction="#selectCBA" text="CBA" toggleGroup="$tgCounter" />
+   <RadioButton fx:id="rbAaBbCb" layoutX="167.0" layoutY="123.0" mnemonicParsing="false" onAction="#selectAaBbCc" text="Aa" toggleGroup="$tgCounter" />
+   <RadioButton fx:id="rb369" layoutX="167.0" layoutY="94.0" mnemonicParsing="false" onAction="#select369" text="369" toggleGroup="$tgCounter" />
+   <ChoiceBox fx:id="choiceBox" layoutX="494.0" layoutY="89.0" prefHeight="18.0" prefWidth="150.0" />
    <Label layoutX="436.0" layoutY="89.0" prefHeight="27.0" prefWidth="58.0" text="Select" />
-   <ScrollPane layoutX="30.0" layoutY="171.0" prefHeight="550.0" prefWidth="650.0">
+   <ScrollPane fx:id="scrollPane" layoutX="30.0" layoutY="149.0" prefHeight="550.0" prefWidth="650.0">
       <FlowPane fx:id="fpCounter" alignment="CENTER" columnHalignment="CENTER" prefHeight="550.0" prefWidth="625.0">
       </FlowPane>
    </ScrollPane>
+   <Label fx:id="count" layoutX="50.0" layoutY="708.0" text="Label" />
+
 </AnchorPane>

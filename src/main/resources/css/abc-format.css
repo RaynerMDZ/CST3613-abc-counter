@@ -13,7 +13,7 @@ root {
     -fx-border-color: none;
 }
 
-.displayLabel, .displayLabel-big, .displayLabel-123 {
+.displayLabel, .displayLabel-big, .displayLabel-123, .displayLabel-bigger {
     -fx-pref-width: .6in;
     -fx-pref-height:.6in;
     -fx-font-size: 12px;
@@ -29,6 +29,12 @@ root {
 .displayLabel-123 {
     -fx-pref-width: .3in;
     -fx-pref-height:.3in;
+}
+
+.displayLabel-bigger {
+    -fx-font-size: 20px;
+    -fx-pref-width: 1in;
+    -fx-pref-height: 1in;
 }
 
 .displayLabel-big {
@@ -64,8 +70,21 @@ root {
 
 }
 
+.isVowelBigger {
+    -fx-font-size: 20px;
+    -fx-background-color: pink;
+    -fx-border-style: dashed;
+
+}
+
 .isConsonant {
     -fx-font-size: 24px;
+    -fx-background-color: rgb(150,150,255);
+    -fx-border-style: dashed;
+}
+
+.isConsonantBigger {
+    -fx-font-size: 20px;
     -fx-background-color: rgb(150,150,255);
     -fx-border-style: dashed;
 }
@@ -73,7 +92,6 @@ root {
 .isEven {
     -fx-background-color: rgb(31, 171, 171);
     -fx-border-style: dashed;
-
 }
 
 .isOdd {
@@ -83,5 +101,10 @@ root {
 
 .isDivisibleBy6 {
     -fx-background-color: rgb(26, 219, 97);
+    -fx-border-style: dashed;
+}
+
+.contains7 {
+    -fx-background-color: rgb(255, 251, 25);
     -fx-border-style: dashed;
 }

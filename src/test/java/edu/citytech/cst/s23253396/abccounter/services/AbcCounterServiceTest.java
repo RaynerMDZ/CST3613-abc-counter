@@ -8,7 +8,8 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AbcCounterServiceTest {
 
@@ -50,7 +51,7 @@ class AbcCounterServiceTest {
     @Test
     void isConstant() {
         String consonant = "r";
-        boolean isConsonant = this.counterService.isConstant(consonant);
+        boolean isConsonant = this.counterService.isConsonant(consonant);
         assertTrue(isConsonant);
     }
 
