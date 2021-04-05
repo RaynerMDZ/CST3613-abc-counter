@@ -11,9 +11,9 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class AbcCounterServiceTest {
+class AbcCounterServiceImplTest {
 
-    private final AbcCounterService counterService = new AbcCounterService();
+    private final AbcCounterServiceImpl counterService = new AbcCounterServiceImpl();
 
     @Test
     void countABC() {

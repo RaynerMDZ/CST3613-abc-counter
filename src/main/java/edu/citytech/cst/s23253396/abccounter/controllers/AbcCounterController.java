@@ -3,6 +3,7 @@ package edu.citytech.cst.s23253396.abccounter.controllers;
 import edu.citytech.cst.s23253396.abccounter.enums.AbcSelectBoxChoice;
 import edu.citytech.cst.s23253396.abccounter.enums.NumberSelectBoxChoice;
 import edu.citytech.cst.s23253396.abccounter.services.AbcCounterService;
+import edu.citytech.cst.s23253396.abccounter.services.AbcCounterServiceJsonImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class AbcCounterController implements Initializable {
 
-    private final AbcCounterService counterService = new AbcCounterService();
+    private final AbcCounterService counterService = new AbcCounterServiceJsonImpl();
 
     private int counter = 0;
 
@@ -67,7 +68,7 @@ public class AbcCounterController implements Initializable {
         this.count.setText("Count is: 0");
     }
 
-// Letters ---------------------------------------------------------
+    // Letters ---------------------------------------------------------
     @FXML
     public void selectABC(ActionEvent event) {
         this.count.setText("Count is: 0");
@@ -210,7 +211,7 @@ public class AbcCounterController implements Initializable {
         }
     }
 
-// Numbers ---------------------------------------------------------
+    // Numbers ---------------------------------------------------------
     @FXML
     public void select123(ActionEvent event) {
 
@@ -276,6 +277,7 @@ public class AbcCounterController implements Initializable {
         if (selectedItem.equalsIgnoreCase(NumberSelectBoxChoice.EVEN.toString())) {
 
             this.fpCounter.getChildren().forEach(currentLabel -> {
+
                 boolean isEven = this.counterService.isEven(Integer.parseInt(((Label) currentLabel).getText()));
 
                 currentLabel.getStyleClass().clear();
@@ -353,7 +355,7 @@ public class AbcCounterController implements Initializable {
         }
     }
 
-// Nothing ---------------------------------------------------------
+    // Nothing ---------------------------------------------------------
     @FXML
     public void selectNothing(ActionEvent event) {
         this.count.setText("Count is: 0");

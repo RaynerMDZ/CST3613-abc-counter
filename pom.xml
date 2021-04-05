@@ -103,6 +103,18 @@
             <artifactId>javafx-controls</artifactId>
             <version>15.0.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.jbbwebsolutions.http</groupId>
+            <artifactId>httpToJson</artifactId>
+            <version>2.20</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.6</version>
+        </dependency>
     </dependencies>
 
 </project>
