@@ -3,7 +3,7 @@ package edu.citytech.cst.s23253396.abccounter.controllers;
 import edu.citytech.cst.s23253396.abccounter.enums.AbcSelectBoxChoice;
 import edu.citytech.cst.s23253396.abccounter.enums.NumberSelectBoxChoice;
 import edu.citytech.cst.s23253396.abccounter.services.AbcCounterService;
-import edu.citytech.cst.s23253396.abccounter.services.AbcCounterServiceJsonImpl;
+import edu.citytech.cst.s23253396.abccounter.services.AbcCounterServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class AbcCounterController implements Initializable {
 
-    private final AbcCounterService counterService = new AbcCounterServiceJsonImpl();
+    private final AbcCounterService counterService = new AbcCounterServiceImpl();
 
     private int counter = 0;
 
