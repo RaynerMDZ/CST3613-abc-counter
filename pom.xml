@@ -17,16 +17,16 @@
 
     <build>
         <finalName>counter-mendez.rayner</finalName>
-        <resources>
-            <resource>
-                <directory>src</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>src/main/java/</include>
-                    <include>src/main/resources/</include>
-                </includes>
-            </resource>
-        </resources>
+<!--        <resources>-->
+<!--            <resource>-->
+<!--                <directory>src</directory>-->
+<!--                <filtering>true</filtering>-->
+<!--                <includes>-->
+<!--                    <include>src/main/java/</include>-->
+<!--                    <include>src/main/resources/</include>-->
+<!--                </includes>-->
+<!--            </resource>-->
+<!--        </resources>-->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -38,6 +38,9 @@
                             <addClasspath>true</addClasspath>
                             <mainClass>edu.citytech.cst.s23253396.abccounter.Main</mainClass>
                         </manifest>
+                        <manifestEntries>
+                            <Class-Path>.</Class-Path>
+                        </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>
